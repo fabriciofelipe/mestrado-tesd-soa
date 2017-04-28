@@ -1,0 +1,65 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package br.com.publicacao.webservice;
+
+
+import javax.jws.WebMethod;
+import javax.jws.WebParam;
+import javax.jws.WebResult;
+import javax.jws.WebService;
+import javax.xml.ws.RequestWrapper;
+import javax.xml.ws.ResponseWrapper;
+
+import br.com.publicacao.dao.PublicacaoDaoImpl;
+import br.com.publicacao.vo.Publicacao;
+
+/**
+ *
+ * @author labccet
+ */
+
+@WebService(targetNamespace = "http://webservice.publicacao.com.br/", portName = "PublicacoesWebServicePort", serviceName = "PublicacoesWebServiceService")
+public class PublicacoesWebService {
+      
+	
+	
+	@WebMethod(operationName = "buscarPublicacoes", action = "urn:BuscarPublicacoes")
+	@RequestWrapper(className = "br.com.publicacao.webservice.jaxws.BuscarPublicacoes", localName = "buscarPublicacoes", targetNamespace = "http://webservice.publicacao.com.br/")
+	@ResponseWrapper(className = "br.com.publicacao.webservice.jaxws.BuscarPublicacoesResponse", localName = "buscarPublicacoesResponse", targetNamespace = "http://webservice.publicacao.com.br/")
+	@WebResult(name = "return")
+	public Publicacao buscarPublicacoes(  @WebParam(name = "arg0") String titulo) {
+       PublicacaoDaoImpl dao = new PublicacaoDaoImpl();
+        Publicacao publicacao = dao.buscarListaPiblicacoes(titulo);
+        return publicacao;
+    }
+	
+	@WebMethod(operationName = "inserirPublicacao", action = "urn:InserirPublicacao")
+	@RequestWrapper(className = "br.com.publicacao.webservice.jaxws.InserirPublicacao", localName = "inserirPublicacao", targetNamespace = "http://webservice.publicacao.com.br/")
+	@ResponseWrapper(className = "br.com.publicacao.webservice.jaxws.InserirPublicacaoResponse", localName = "inserirPublicacaoResponse", targetNamespace = "http://webservice.publicacao.com.br/")
+	@WebResult(name = "return")
+	public int inserirPublicacao(  @WebParam(name = "arg0") Publicacao publicacao) {
+		PublicacaoDaoImpl dao = new PublicacaoDaoImpl();
+		 return dao.incluirPublicacao(publicacao);
+	}
+	
+	@WebMethod(operationName = "alterarPublicacao", action = "urn:AlterarPublicacao")
+	@RequestWrapper(className = "br.com.publicacao.webservice.jaxws.AlterarPublicacao", localName = "alterarPublicacao", targetNamespace = "http://webservice.publicacao.com.br/")
+	@ResponseWrapper(className = "br.com.publicacao.webservice.jaxws.AlterarPublicacaoResponse", localName = "alterarPublicacaoResponse", targetNamespace = "http://webservice.publicacao.com.br/")
+	@WebResult(name = "return")
+	public int alterarPublicacao(  @WebParam(name = "arg0") Publicacao publicacao) {
+		PublicacaoDaoImpl dao = new PublicacaoDaoImpl();
+		return dao.alterarPublicacao(publicacao);
+	}
+	
+	@WebMethod(operationName = "excluirPublicacao", action = "urn:ExcluirPublicacao")
+	@RequestWrapper(className = "br.com.publicacao.webservice.jaxws.ExcluirPublicacao", localName = "excluirPublicacao", targetNamespace = "http://webservice.publicacao.com.br/")
+	@ResponseWrapper(className = "br.com.publicacao.webservice.jaxws.ExcluirPublicacaoResponse", localName = "excluirPublicacaoResponse", targetNamespace = "http://webservice.publicacao.com.br/")
+	@WebResult(name = "return")
+	public int excluirPublicacao(  @WebParam(name = "arg0") int id) {
+		PublicacaoDaoImpl dao = new PublicacaoDaoImpl();
+		return dao.excluirPublicacao(id);
+	}
+}

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="PublicacoesWebService" targetNamespace="http://webservice.publicacao.com.br/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://webservice.publicacao.com.br/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema">
+  <import namespace="http://webservice.publicacao.com.br/" schemaLocation="publicacoeswebservice_schema1.xsd"/>
+</schema>
+  </wsdl:types>
+  <wsdl:message name="buscarPublicacoesResponse">
+    <wsdl:part name="parameters" element="tns:buscarPublicacoesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="excluirPublicacaoResponse">
+    <wsdl:part name="parameters" element="tns:excluirPublicacaoResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="inserirAutor">
+    <wsdl:part name="parameters" element="tns:inserirAutor">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="excluirPublicacao">
+    <wsdl:part name="parameters" element="tns:excluirPublicacao">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="alterarAutorResponse">
+    <wsdl:part name="parameters" element="tns:alterarAutorResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="alterarAutor">
+    <wsdl:part name="parameters" element="tns:alterarAutor">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="excluirAutor">
+    <wsdl:part name="parameters" element="tns:excluirAutor">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="buscarPublicacoes">
+    <wsdl:part name="parameters" element="tns:buscarPublicacoes">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="inserirAutorResponse">
+    <wsdl:part name="parameters" element="tns:inserirAutorResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="alterarPublicacaoResponse">
+    <wsdl:part name="parameters" element="tns:alterarPublicacaoResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="buscarAutor">
+    <wsdl:part name="parameters" element="tns:buscarAutor">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="excluirAutorResponse">
+    <wsdl:part name="parameters" element="tns:excluirAutorResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="buscarAutorResponse">
+    <wsdl:part name="parameters" element="tns:buscarAutorResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="inserirPublicacao">
+    <wsdl:part name="parameters" element="tns:inserirPublicacao">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="alterarPublicacao">
+    <wsdl:part name="parameters" element="tns:alterarPublicacao">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="inserirPublicacaoResponse">
+    <wsdl:part name="parameters" element="tns:inserirPublicacaoResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="PublicacoesWebServicePortType">
+    <wsdl:operation name="excluirPublicacao">
+      <wsdl:input name="excluirPublicacao" message="tns:excluirPublicacao">
+    </wsdl:input>
+      <wsdl:output name="excluirPublicacaoResponse" message="tns:excluirPublicacaoResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="excluirAutor">
+      <wsdl:input name="excluirAutor" message="tns:excluirAutor">
+    </wsdl:input>
+      <wsdl:output name="excluirAutorResponse" message="tns:excluirAutorResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="inserirAutor">
+      <wsdl:input name="inserirAutor" message="tns:inserirAutor">
+    </wsdl:input>
+      <wsdl:output name="inserirAutorResponse" message="tns:inserirAutorResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="buscarPublicacoes">
+      <wsdl:input name="buscarPublicacoes" message="tns:buscarPublicacoes">
+    </wsdl:input>
+      <wsdl:output name="buscarPublicacoesResponse" message="tns:buscarPublicacoesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="buscarAutor">
+      <wsdl:input name="buscarAutor" message="tns:buscarAutor">
+    </wsdl:input>
+      <wsdl:output name="buscarAutorResponse" message="tns:buscarAutorResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="alterarAutor">
+      <wsdl:input name="alterarAutor" message="tns:alterarAutor">
+    </wsdl:input>
+      <wsdl:output name="alterarAutorResponse" message="tns:alterarAutorResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="inserirPublicacao">
+      <wsdl:input name="inserirPublicacao" message="tns:inserirPublicacao">
+    </wsdl:input>
+      <wsdl:output name="inserirPublicacaoResponse" message="tns:inserirPublicacaoResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="alterarPublicacao">
+      <wsdl:input name="alterarPublicacao" message="tns:alterarPublicacao">
+    </wsdl:input>
+      <wsdl:output name="alterarPublicacaoResponse" message="tns:alterarPublicacaoResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PublicacoesWebServiceSoapBinding" type="tns:PublicacoesWebServicePortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="excluirAutor">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="excluirAutor">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="excluirAutorResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="excluirPublicacao">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="excluirPublicacao">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="excluirPublicacaoResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="inserirAutor">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="inserirAutor">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="inserirAutorResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="buscarPublicacoes">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="buscarPublicacoes">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="buscarPublicacoesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="buscarAutor">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="buscarAutor">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="buscarAutorResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="alterarAutor">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="alterarAutor">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="alterarAutorResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="inserirPublicacao">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="inserirPublicacao">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="inserirPublicacaoResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="alterarPublicacao">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="alterarPublicacao">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="alterarPublicacaoResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PublicacoesWebService">
+    <wsdl:port name="PublicacoesWebServicePort" binding="tns:PublicacoesWebServiceSoapBinding">
+      <soap:address location="http://localhost:8080/PublicacaoProducer/services"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

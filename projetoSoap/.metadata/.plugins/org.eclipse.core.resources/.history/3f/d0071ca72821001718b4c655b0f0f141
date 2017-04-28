@@ -1,0 +1,13 @@
+package br.com.autor.webservice;
+
+import java.text.ParseException;
+
+public class teste {
+	
+	public static void main(String[] args) throws ParseException {
+		
+		
+		
+	}
+	
+}

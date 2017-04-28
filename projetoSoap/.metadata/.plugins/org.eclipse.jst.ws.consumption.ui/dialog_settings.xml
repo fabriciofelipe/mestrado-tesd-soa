@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<list key="org.eclipse.jst.ws.client.type.java">
+		<item value="http://www.bronzebusiness.com.br/webservices/valida.asmx?wsdl"/>
+		<item value="https://apps.correios.com.br/SigepMasterJPA/AtendeClienteService/AtendeCliente?wsdl"/>
+		<item value="http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx?WSDL"/>
+		<item value="http://localhost:8080/PublicacaoProducer/services/PublicacoesWebServicePort?wsdl"/>
+	</list>
+</section>

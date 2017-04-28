@@ -1,0 +1,23 @@
+/**
+ * ValidaSoap.java
+ *
+ * This file was auto-generated from WSDL
+ * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
+ */
+
+package br.com.crownodonto.www.webservices;
+
+public interface ValidaSoap extends java.rmi.Remote {
+
+    /**
+     * CPF válido retorna o CPF sem .,-/ CPF inválido retorna 0 Copyright
+     * © 2002 Bronze & Business
+     */
+    public java.lang.String valida_cpf(java.lang.String cpf) throws java.rmi.RemoteException;
+
+    /**
+     * CNPJ válido retorna o CNPJ sem .,-/ CNPJ inválido retorna 0
+     * Copyright © 2002 Bronze & Business
+     */
+    public java.lang.String valida_cnpj(java.lang.String cgc) throws java.rmi.RemoteException;
+}

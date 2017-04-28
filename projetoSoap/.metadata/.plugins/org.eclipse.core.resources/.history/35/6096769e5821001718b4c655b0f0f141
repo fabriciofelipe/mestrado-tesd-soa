@@ -1,0 +1,240 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package br.com.autor.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import org.springframework.stereotype.Repository;
+
+import br.com.autor.vo.Autor;
+import br.com.autor.vo.Endereco;
+import br.com.publicacao.connection.ConnectionFactory;
+
+/**
+ *
+ * @author labccet
+ */
+@Repository
+public class AutorDaoImpl implements AutorDao{
+
+
+	private static String CONSULTA_AUTOR = "select * from autor a , endereco e where a.id=e.id_autor";
+	private static String INSERIR_AUTOR = "insert into autor(cpf,nome,nome_citacao) values(?,?,?)";
+	private static String INSERIR_ENDERECO = "insert into endereco(id_autor,bairro,cidade,cep,uf) values(?,?,?,?,?)";
+	private static String ALTERAR_AUTOR = "UPDATE autor SET cpf=?,nome=?,nome_citacao=? WHERE id = ?";
+	private static String DELETAR_AUTOR = "delete from autor WHERE id = ?";
+	private static String BUSCAR_ULTIMO_AUTOR = "select max(id) as id from autor";
+	public Autor buscarAutor(String nome){
+		Autor autor = new Autor();
+		try {
+			//abrindo uma conexão
+			Connection conexao = ConnectionFactory.createConnection();
+			//criar o SQL para extrai dados do banco
+			StringBuilder sql = new StringBuilder();
+			sql.append(CONSULTA_AUTOR);
+			sql.append(" WHERE titulo LIKE ? ");
+			//criando comando...
+			PreparedStatement cmd = conexao.prepareStatement(sql.toString());
+			cmd.setString(1, "%" + nome + "%");
+			ResultSet resultado = ConnectionFactory.Execute(conexao, cmd);
+			while (resultado.next()) {
+				autor.setId(resultado.getInt("id"));
+				autor.setNome(resultado.getString("nome"));
+				autor.setNomeCitacao(resultado.getString("nome_citacao"));
+				autor.setCpf(resultado.getString("cpf"));
+			}
+			conexao.close(); //fecha a conexão
+		} catch (Exception e) {
+
+		}
+		return autor;
+	}
+
+	public int incluirAutor(Autor autor){
+
+		try {
+			//abrindo uma conexão
+			Connection conexao = ConnectionFactory.createConnection();
+			//criar o SQL para extrai dados do banco
+			StringBuilder sql = new StringBuilder();
+			sql.append(INSERIR_AUTOR);
+			//criando comando...
+			PreparedStatement cmd = conexao.prepareStatement(sql.toString());
+			cmd.setString(1, autor.getCpf());
+			cmd.setString(2, autor.getNome());
+			cmd.setObject(3, autor.getNomeCitacao());
+			int ret = ConnectionFactory.updade(conexao, cmd);
+			System.out.println("Retonoro na inclusao " + ret);
+			autor.getEndereco().setIdAutor(buscarUltimoAutor(conexao));
+			incluirEndereco(autor.getEndereco());
+
+			conexao.close(); //fecha a conexão
+
+			return ret;
+
+		} catch (Exception e) {
+			new RuntimeException(e.getMessage());
+		}
+		return 0;
+	}
+
+	public int buscarUltimoAutor(Connection conexao){
+		int id = 0;
+		StringBuilder sql = new StringBuilder();
+		sql.append(BUSCAR_ULTIMO_AUTOR);
+		PreparedStatement cmd;
+		try {
+			cmd = conexao.prepareStatement(sql.toString());
+			ResultSet resultado = ConnectionFactory.Execute(conexao, cmd);
+			while (resultado.next()) {
+				id = resultado.getInt("id");
+			}
+			
+		} catch (SQLException e) {
+			new RuntimeException(e.getMessage());
+		}
+		return id;
+	}
+	
+	
+	public void incluirEndereco(Endereco endereco){
+
+		try {
+			//abrindo uma conexão
+			Connection conexao = ConnectionFactory.createConnection();
+			//criar o SQL para extrai dados do banco
+			StringBuilder sql = new StringBuilder();
+			sql.append(INSERIR_ENDERECO);
+			//criando comando...
+			PreparedStatement cmd = conexao.prepareStatement(sql.toString());
+			cmd.setInt(1, endereco.getIdAutor());
+			cmd.setString(2, endereco.getBairro());
+			cmd.setString(3, endereco.getCidade());
+			cmd.setInt(4, endereco.getCep());
+			cmd.setString(5, endereco.getUf());
+			int ret = ConnectionFactory.updade(conexao, cmd);
+			System.out.println("Retonoro na inclusao " + ret);
+		} catch (Exception e) {
+			new RuntimeException(e.getMessage());
+		}
+	}
+
+	public int alterarAutor(Autor autor){
+		try {
+			//abrindo uma conexão
+			Connection conexao = ConnectionFactory.createConnection();
+			//criar o SQL para extrai dados do banco
+			StringBuilder sql = new StringBuilder();
+			sql.append(ALTERAR_AUTOR);
+			//criando comando...
+			PreparedStatement cmd = conexao.prepareStatement(sql.toString());
+			cmd.setInt(1, autor.getId());
+			cmd.setString(2, autor.getNome());
+			cmd.setString(3, autor.getCpf());
+			cmd.setObject(4, autor.getNomeCitacao());
+			int ret = ConnectionFactory.updade(conexao, cmd);
+			System.out.println("Retonoro na Alteracao " + ret);
+			incluirEndereco(autor.getEndereco());
+			conexao.close(); //fecha a conexão
+			return ret;
+		} catch (Exception e) {
+			new RuntimeException(e.getMessage());
+		}
+		return 0;
+	}
+
+	public int excluirAutor(Autor autor){
+		try {
+			//abrindo uma conexão
+			Connection conexao = ConnectionFactory.createConnection();
+			//criar o SQL para extrai dados do banco
+			StringBuilder sql = new StringBuilder();
+			sql.append(DELETAR_AUTOR);
+			//criando comando...
+			PreparedStatement cmd = conexao.prepareStatement(sql.toString());
+			cmd.setInt(1, autor.getId());
+			int ret = ConnectionFactory.updade(conexao, cmd);
+			System.out.println("Retonoro na Exclusao " + ret);
+			conexao.close(); //fecha a conexão
+			return ret;
+		} catch (Exception e) {
+			new RuntimeException(e.getMessage());
+		}
+		return 0;
+	}
+
+	//	private JdbcTemplate jdbcTemplate;
+	//
+	//	public final void setDataSource(DataSource dataSource) {
+	//		this.jdbcTemplate = new JdbcTemplate(dataSource);
+	//	}
+
+
+	//	@Override
+	//	public Publicacao buscarListaPiblicacoes(String titulo){
+	//		String sql = "select * from publicacao";// titulo LIKE ':titulo'";
+	//		MapSqlParameterSource params = new MapSqlParameterSource();
+	//		params.addValue("titulo", titulo);
+	//		return this.jdbcTemplate.queryForObject(sql, new ListaPublicacaoRowMapper());
+	//	};
+	//
+	//
+	//	/**
+	//	 * Metodo para gerar rowmaper
+	//	 */
+	//	public static class ListaPublicacaoRowMapper implements RowMapper<Publicacao> {  
+	//		public Publicacao mapRow(ResultSet rs, int rowNum) throws SQLException {
+	//			Publicacao publicacao = new Publicacao();
+	//			publicacao.setId(rs.getInt("id"));
+	//			publicacao.setTitulo(rs.getString("titulo"));
+	//			publicacao.setPagInicial(rs.getInt("pagina_inicial")); 
+	//			publicacao.setPagFinal(rs.getInt("pagina_final")); 
+	//			publicacao.setDataPublicacao(rs.getDate("data_publicacao")); 
+	//			return publicacao;
+	//
+	//		}
+	//	}
+
+	//	@Override
+	//	     public Publicacao buscarListaPiblicacoes(String titulo){
+	//	         for (Publicacao object : mock()) {
+	//	             if(object.getTitulo().contains(titulo)){
+	//	                 return object;
+	//	             }
+	//	         }
+	//	         return null;
+	//	     };
+	//
+	//
+	//	private List<Publicacao> mock(){
+	//		Publicacao publicacao1 = new Publicacao();
+	//		publicacao1.setId(1);
+	//		publicacao1.setTitulo("A Cloud-based Architecture for the Internet of Things Targeting Industrial Engine Remote Monitoring. In: Sensors to Cloud Architectures Workshop (SCAW 2015)");
+	//		publicacao1.setPagInicial(1);
+	//		publicacao1.setPagInicial(100);
+	//		publicacao1.setDataPublicacao(new Date());
+	//
+	//		Publicacao publicacao2 = new Publicacao();
+	//		publicacao2.setId(2);
+	//		publicacao2.setTitulo("The case for DevOps in scientific applications. In: 2015 IFIP/IEEE International Symposium on Integrated Network Management (IM), 2015, Ottawa. 2015 IFIP/IEEE International Symposium on Integrated Network Management (IM).");
+	//		publicacao2.setPagInicial(1398);
+	//		publicacao2.setPagInicial(1404);
+	//		publicacao2.setDataPublicacao(new Date());
+	//
+	//		List<Publicacao> list = new ArrayList<Publicacao>();
+	//		list.add(publicacao1);
+	//		list.add(publicacao2);
+	//
+	//		return list;
+	//
+	//
+	//	};   
+
+
+}

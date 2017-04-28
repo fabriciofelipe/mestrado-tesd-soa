@@ -1,0 +1,105 @@
+package br.com.publicacao.controller;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import br.com.publicacao.webservice.Autor;
+import br.com.publicacao.webservice.PublicacoesWebService;
+import br.com.publicaco.correios.AtendeClienteService;
+import br.com.publicaco.correios.EnderecoERP;
+import br.com.publicaco.correios.SQLException_Exception;
+import br.com.publicaco.correios.SigepClienteException;
+@Controller
+public class AutorController {
+
+
+
+	@RequestMapping("/consultarAutores")
+	public String consultarAutores(Model model, HttpServletRequest httpServletRequest){
+		PublicacoesWebService service = new PublicacoesWebService();
+		Autor autor  = service.getPublicacoesWebServicePort().buscarAutor(httpServletRequest.getParameter("titulo"));
+		model.addAttribute("autor", autor);
+		return "autores";
+	}
+
+	@RequestMapping("/autores")
+	public String autores(Model model, HttpServletRequest httpServletRequest){
+		return "autores";
+	}
+	
+	@RequestMapping("/cadastrarAutor")
+	public String cadastrarAutor(Model model, HttpServletRequest httpServletRequest){
+		return "cadastrarAutor";
+	}
+	
+	@RequestMapping(value = "/addAutor", method = RequestMethod.POST)
+	public String addAutor(@ModelAttribute("SpringWeb") Autor autor, ModelMap model, HttpServletRequest request) throws SigepClienteException, SQLException_Exception {
+			if(autor.getEndereco().getEndereco().equals("buscaEndereco")){
+				AtendeClienteService buscarEndereco = new AtendeClienteService();
+				EnderecoERP enderecoERP = buscarEndereco.getAtendeClientePort().consultaCEP(autor.getEndereco().getCep().toString());
+				autor.getEndereco().setBairro(enderecoERP.getBairro());
+				autor.getEndereco().setCidade(enderecoERP.getCidade());
+				autor.getEndereco().setEndereco(enderecoERP.getEnd());
+				autor.getEndereco().setUf(enderecoERP.getUf());
+				model.addAttribute("autor", autor);
+			} else{
+				PublicacoesWebService service = new PublicacoesWebService();
+				int ret = service.getPublicacoesWebServicePort().inserirAutor(autor);
+				request.setAttribute("incluir", ret);
+				
+			}
+		return "cadastrarAutor";
+
+	}
+	
+	@RequestMapping("/alterarAutor")
+	public String alterarAutor(Model model, HttpServletRequest httpServletRequest){
+		return "alterarAutor";
+	}
+	
+	@RequestMapping("/consultarAlterarAutores")
+	public String consultarAlterarAutores(Model model, HttpServletRequest httpServletRequest){
+		PublicacoesWebService service = new PublicacoesWebService();
+		Autor autor  = service.getPublicacoesWebServicePort().buscarAutor(httpServletRequest.getParameter("titulo"));
+		model.addAttribute("autor", autor);
+		return "alterarAutor";
+	}
+	
+	@RequestMapping(value = "/alterAutor", method = RequestMethod.POST)
+	public String alterAutor(@ModelAttribute("SpringWeb") Autor autor, ModelMap model, HttpServletRequest request) {
+			PublicacoesWebService service = new PublicacoesWebService();
+			int ret = service.getPublicacoesWebServicePort().alterarAutor(autor);
+			request.setAttribute("alterar", ret);
+		return "alterarAutor";
+
+	}
+	
+	@RequestMapping("/consultarExcluirAutores")
+	public String consultarExcluirAutores(Model model, HttpServletRequest httpServletRequest){
+		PublicacoesWebService service = new PublicacoesWebService();
+		Autor autor  = service.getPublicacoesWebServicePort().buscarAutor(httpServletRequest.getParameter("titulo"));
+		model.addAttribute("autor", autor);
+		return "excluirAutor";
+	}
+	
+	@RequestMapping("/excluirAutor")
+	public String excluirAutor(Model model, HttpServletRequest httpServletRequest){
+		return "excluirAutor";
+	}
+	
+	@RequestMapping(value = "/excluirAutor", method = RequestMethod.POST)
+	public String excluirAutor(@ModelAttribute("SpringWeb") Autor autor, ModelMap model, HttpServletRequest request) {
+			PublicacoesWebService service = new PublicacoesWebService();
+			int ret = service.getPublicacoesWebServicePort().excluirAutor(autor);
+			request.setAttribute("excluir", ret);
+		return "excluirAutor";
+
+	}
+	
+}

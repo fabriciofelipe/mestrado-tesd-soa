@@ -1,0 +1,22 @@
+package br.com.publicacao.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+@Controller
+public class PublicacaoController {
+	
+	@RequestMapping(value = "/inicio", method = RequestMethod.GET)
+	public String index(){
+		return "index";
+	}
+	
+//	@RequestMapping("publicacoes")
+//	public String publicacoes(){
+//		PublicacoesWebService service = new PublicacoesWebService();
+//		Publicacao publicacao = service.getPublicacoesWebServicePort().buscarPublicacoes("Architecture");
+//	    return "publicacoes";
+//	}
+	
+}

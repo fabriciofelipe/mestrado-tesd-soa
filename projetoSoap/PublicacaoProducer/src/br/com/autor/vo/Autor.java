@@ -1,0 +1,57 @@
+package br.com.autor.vo;
+
+import java.io.Serializable;
+
+public class Autor implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	private Integer id;
+	private String cpf;
+	private String nome;
+	private String nomeCitacao;
+	private Endereco endereco = new Endereco();
+	
+	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public String getCpf() {
+		return cpf;
+	}
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public String getNomeCitacao() {
+		return nomeCitacao;
+	}
+	public void setNomeCitacao(String nomeCitacao) {
+		this.nomeCitacao = nomeCitacao;
+	}
+	public Endereco getEndereco() {
+		return endereco;
+	}
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+	@Override
+	public String toString() {
+		return "Autor [id=" + id + ", cpf=" + cpf + ", nome=" + nome + ", nomeCitacao=" + nomeCitacao + ", endereco="
+				+ endereco + "]";
+	}
+	
+	
+
+}

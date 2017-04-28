@@ -1,0 +1,34 @@
+package br.com.publicacao.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import br.com.publicacao.webservice.Autor;
+import br.com.publicacao.webservice.PublicacoesWebService;
+@Controller
+public class AutorController {
+
+
+
+	@RequestMapping("/consultarAutores")
+	public String consultarAutores(Model model, HttpServletRequest httpServletRequest){
+		PublicacoesWebService service = new PublicacoesWebService();
+		Autor autor  = service.getPublicacoesWebServicePort().buscarAutor(httpServletRequest.getParameter("titulo"));
+		List<Autor> autores = new ArrayList<Autor>();
+		autores.add(autor);
+		model.addAttribute("autor", autores);
+		return "autores";
+	}
+
+	@RequestMapping("/autores")
+	public String autores(Model model, HttpServletRequest httpServletRequest){
+		return "autores";
+	}
+	
+}

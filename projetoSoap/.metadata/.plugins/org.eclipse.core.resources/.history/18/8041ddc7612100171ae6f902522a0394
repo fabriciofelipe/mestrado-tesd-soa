@@ -1,0 +1,51 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package br.com.publicacao.webservice;
+
+
+import javax.jws.WebMethod;
+import javax.jws.WebParam;
+import javax.jws.WebResult;
+import javax.jws.WebService;
+import javax.xml.ws.RequestWrapper;
+import javax.xml.ws.ResponseWrapper;
+
+import br.com.publicacao.dao.PublicacaoDaoImpl;
+import br.com.publicacao.vo.Publicacao;
+
+/**
+ *
+ * @author labccet
+ */
+
+public class PublicacoesWebService {
+      
+	
+	
+	
+	public Publicacao buscarPublicacoes(String titulo) {
+       PublicacaoDaoImpl dao = new PublicacaoDaoImpl();
+        Publicacao publicacao = dao.buscarListaPiblicacoes(titulo);
+        return publicacao;
+    }
+	
+	
+	public int inserirPublicacao(Publicacao publicacao) {
+		PublicacaoDaoImpl dao = new PublicacaoDaoImpl();
+		 return dao.incluirPublicacao(publicacao);
+	}
+	
+	public int alterarPublicacao(Publicacao publicacao) {
+		PublicacaoDaoImpl dao = new PublicacaoDaoImpl();
+		return dao.alterarPublicacao(publicacao);
+	}
+	
+	
+	public int excluirPublicacao(int id) {
+		PublicacaoDaoImpl dao = new PublicacaoDaoImpl();
+		return dao.excluirPublicacao(id);
+	}
+}

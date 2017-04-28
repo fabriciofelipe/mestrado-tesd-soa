@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet" />
+<meta charset="UTF-8">
+<title>Cadastro de Publicação</title>
+</head>
+<body style="background: #f4f4f4; font-family: Arial; font-size: 12px;">
+
+
+
+	<div class="row">
+		<form action="consultarAlterarAutores" th:action="@{/consultarAlterarAutores}"
+				th:object="${autor}" method="post">
+			<div class="col-xs-12 margin-top-20">
+				<div class="row" style="margin-top: 20px">
+					<div class="col-xs-12 col-xs-offset-5">
+						<b style="text-align: center; font-size: 150%">Alterar
+							Autor</b>
+					</div>
+				</div>
+			</div>
+			<br />
+			<div style="width: 1043px; margin: auto; margin-top: 50px;">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div class="col-xs-12"></div>
+						<div class="row" id="topoFiltro" style="cursor: pointer;">
+							<div class="col-xs-11">
+								<b>FILTRO</b>
+							</div>
+						</div>
+						<hr style="margin-top: 10px; border: 1px dotted #CCC;">
+						<div class="row">
+							<div class="col-xs-6">
+								Nome: <input type="text" class="form-control"
+									name="titulo"
+									style="width: 100%; height: 34px; padding: 6px 6px; font-size: 12px; float: left">
+							</div>
+							<div class="col-xs-6" style="margin-top: 16px;">
+								<button type="submit" class="btn btn-primary" id="btnConsultar">Consultar</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	
+	<div style="width: 1043px; margin: auto">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="col-xs-12"></div>
+				<div class="row" id="topoFiltro" style="cursor: pointer;">
+					<div class="col-xs-11">
+						<b>Formulário de cadastro de Autor</b>
+					</div>
+				</div>
+
+				<hr style="margin-top: 10px; border: 1px dotted #CCC;">
+				 <c:if test="${incluir eq 1}">
+					<div class="alert alert-success">
+						<strong>Sucesso!</strong> Autor alterado com sucesso.
+					</div>
+				</c:if>
+				<div class="col-xs-12">
+			<form action="alterAutor" th:action="@{/alterAutor}" th:object="${autor}" method="post">
+			<input type="hidden" name="id" value="${autor.id}">
+			<input type="hidden" name="endereco.id" value="${autor.endereco.id}">
+			<input type="hidden" name="endereco.idAutor" value="${autor.id}">
+						<div class="col-xs-12">
+							<div class="row">
+								<div class="col-xs-4">
+									Número Cpf: <span style="color: red">*</span> <input
+										type="number" class="form-control" name="cpf" size="11"
+										value="${autor.cpf}">
+								</div>
+								<div class="col-xs-4">
+									Nome: <span style="color: red">*</span> <input
+										type="text" class="form-control" name="nome"
+										value="${autor.nome}">
+								</div>
+								<div class="col-xs-4">
+									Nome Citação : <span style="color: red">*</span> <input
+										type="text" class="form-control" name="nomeCitacao"
+										value="${autor.nomeCitacao}">
+								</div>
+							</div>
+							<br/>
+							<div class="row">
+								<div class="col-xs-4">
+									Cep: <span style="color: red">*</span> <input
+										type="number" class="form-control" name="endereco.cep" size="8"
+										value="${autor.endereco.cep}">
+								</div>
+								<div class="col-xs-8">
+									Endereço <span style="color: red">*</span> <input
+										type="text" class="form-control" name="endereco.endereco"
+										value="${autor.endereco.endereco}" >
+								</div>
+							</div>
+							<br/>
+							<div class="row">
+								<div class="col-xs-4">
+									Bairro : <span style="color: red">*</span> <input
+										type="text" class="form-control" name="endereco.bairro"
+										value="${autor.endereco.bairro}">
+								</div>
+								<div class="col-xs-4">
+									Cidade: <span style="color: red">*</span> <input
+										type="text" class="form-control" name="endereco.cidade"
+										value="${autor.endereco.cidade}">
+								</div>
+								<div class="col-xs-4">
+									UF : <span style="color: red">*</span> <input
+										type="text" class="form-control" name="endereco.uf"
+										value="${autor.endereco.uf}">
+								</div>
+							</div>
+							<br />
+							<br />
+							<div class="row">
+								<div class="col-xs-2 col-xs-offset-8">
+									<button type="submit" class="btn btn-primary" id="btnConsultar">Alterar</button>
+								</div>
+								<div class="col-xs-1">
+									<a href="/PublicacaoConsumer/" class="btn btn-primary">Voltar</a>
+								</div>
+							</div>
+						</div>
+				</div>
+				<br />
+				</form>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+package br.com.publicacao.controller;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import br.com.publicacao.webservice.Autor;
+import br.com.publicacao.webservice.PublicacoesWebService;
+@Controller
+public class AutorController {
+
+
+
+	@RequestMapping("/consultarAutores")
+	public String consultarAutores(Model model, HttpServletRequest httpServletRequest){
+		PublicacoesWebService service = new PublicacoesWebService();
+		Autor autor  = service.getPublicacoesWebServicePort().buscarAutor(httpServletRequest.getParameter("titulo"));
+		model.addAttribute("autor", autor);
+		return "autores";
+	}
+
+	@RequestMapping("/autores")
+	public String autores(Model model, HttpServletRequest httpServletRequest){
+		return "autores";
+	}
+	
+	@RequestMapping("/cadastrarAutor")
+	public String cadastrarAutor(Model model, HttpServletRequest httpServletRequest){
+		return "cadastrarAutor";
+	}
+	
+	@RequestMapping(value = "/addAutor", method = RequestMethod.POST)
+	public String addAutor(@ModelAttribute("SpringWeb") Autor autor, ModelMap model, HttpServletRequest request) {
+			PublicacoesWebService service = new PublicacoesWebService();
+			int ret = service.getPublicacoesWebServicePort().inserirAutor(autor);
+			request.setAttribute("incluir", ret);
+		return "cadastrarAutor";
+
+	}
+	
+	@RequestMapping("/alterarAutor")
+	public String alterarAutor(Model model, HttpServletRequest httpServletRequest){
+		return "alterarAutor";
+	}
+	
+	@RequestMapping("/consultarAlteraoAutores")
+	public String consultarAlteraoAutores(Model model, HttpServletRequest httpServletRequest){
+		PublicacoesWebService service = new PublicacoesWebService();
+		Autor autor  = service.getPublicacoesWebServicePort().buscarAutor(httpServletRequest.getParameter("titulo"));
+		model.addAttribute("autor", autor);
+		return "alterarAutor";
+	}
+	
+	@RequestMapping(value = "/alterAutor", method = RequestMethod.POST)
+	public String alterAutor(@ModelAttribute("SpringWeb") Autor autor, ModelMap model, HttpServletRequest request) {
+			PublicacoesWebService service = new PublicacoesWebService();
+			int ret = service.getPublicacoesWebServicePort().alterarAutor(autor);
+			request.setAttribute("incluir", ret);
+		return "alterarAutor";
+
+	}
+	
+}

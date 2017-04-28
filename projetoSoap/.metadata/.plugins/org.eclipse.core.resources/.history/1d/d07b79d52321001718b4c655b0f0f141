@@ -1,0 +1,20 @@
+package br.com.autor.vo;
+
+import java.io.Serializable;
+
+public class Autor implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	private Integer id;
+	private Integer cpf;
+	private String nome;
+	private String nomeCitacao;
+	private Endereco endereco;
+	
+	
+
+}

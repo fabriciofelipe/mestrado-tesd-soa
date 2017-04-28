@@ -1,0 +1,21 @@
+package br.com.autor.webservice;
+
+import java.text.ParseException;
+
+import br.com.autor.dao.AutorDaoImpl;
+import br.com.autor.vo.Autor;
+
+public class teste {
+	
+	public static void main(String[] args) throws ParseException {
+		
+		AutorDaoImpl dao = new AutorDaoImpl();
+		Autor autor = new Autor();
+		autor.setCpf(8907925771L);
+		autor.setNome("Fabricio Carvalho");
+		autor.setNomeCitacao("Computadores são inúteis. Eles só podem dar respostas.Picasso, Pablo.");
+		dao.incluirAutor(autor);
+		
+	}
+	
+}

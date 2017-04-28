@@ -1,0 +1,228 @@
+
+package br.com.publicacao.webservice;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlType;
+
+
+/**
+ * <p>Classe Java de endereco complex type.
+ * 
+ * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+ * 
+ * <pre>
+ * &lt;complexType name="endereco">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;sequence>
+ *         &lt;element name="bairro" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="cep" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+ *         &lt;element name="cidade" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="endereco" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+ *         &lt;element name="idAutor" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+ *         &lt;element name="uf" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *       &lt;/sequence>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "endereco", propOrder = {
+    "bairro",
+    "cep",
+    "cidade",
+    "endereco",
+    "id",
+    "idAutor",
+    "uf"
+})
+public class Endereco {
+
+    protected String bairro;
+    protected Integer cep;
+    protected String cidade;
+    protected Integer id;
+    protected Integer idAutor;
+    protected String uf;
+    protected String endereco;
+
+    /**
+     * Obtém o valor da propriedade bairro.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getBairro() {
+        return bairro;
+    }
+
+    /**
+     * Define o valor da propriedade bairro.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setBairro(String value) {
+        this.bairro = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade cep.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
+     */
+    public Integer getCep() {
+        return cep;
+    }
+
+    /**
+     * Define o valor da propriedade cep.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
+     */
+    public void setCep(Integer value) {
+        this.cep = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade cidade.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getCidade() {
+        return cidade;
+    }
+
+    /**
+     * Define o valor da propriedade cidade.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setCidade(String value) {
+        this.cidade = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade id.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
+     */
+    public Integer getId() {
+        return id;
+    }
+
+    /**
+     * Define o valor da propriedade id.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
+     */
+    public void setId(Integer value) {
+        this.id = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade idAutor.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
+     */
+    public Integer getIdAutor() {
+        return idAutor;
+    }
+
+    /**
+     * Define o valor da propriedade idAutor.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
+     */
+    public void setIdAutor(Integer value) {
+        this.idAutor = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade uf.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getUf() {
+        return uf;
+    }
+
+    /**
+     * Define o valor da propriedade uf.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setUf(String value) {
+        this.uf = value;
+    }
+
+	/**
+     * Obtém o valor da propriedade endereco.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+	public String getEndereco() {
+		return endereco;
+	}
+
+	/**
+     * Define o valor da propriedade endereco.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+
+//	@Override
+	public String toString() {
+		return "Endereco [bairro=" + bairro + ", cep=" + cep + ", cidade=" + cidade + ", id=" + id + ", idAutor="
+				+ idAutor + ", uf=" + uf + ", endereco=" + endereco + "]";
+	}
+
+}

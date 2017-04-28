@@ -1,0 +1,60 @@
+package br.com.crownodonto.www.webservices;
+
+public class ValidaSoapProxy implements br.com.crownodonto.www.webservices.ValidaSoap {
+  private String _endpoint = null;
+  private br.com.crownodonto.www.webservices.ValidaSoap validaSoap = null;
+  
+  public ValidaSoapProxy() {
+    _initValidaSoapProxy();
+  }
+  
+  public ValidaSoapProxy(String endpoint) {
+    _endpoint = endpoint;
+    _initValidaSoapProxy();
+  }
+  
+  private void _initValidaSoapProxy() {
+    try {
+      validaSoap = (new br.com.crownodonto.www.webservices.ValidaLocator()).getValidaSoap();
+      if (validaSoap != null) {
+        if (_endpoint != null)
+          ((javax.xml.rpc.Stub)validaSoap)._setProperty("javax.xml.rpc.service.endpoint.address", _endpoint);
+        else
+          _endpoint = (String)((javax.xml.rpc.Stub)validaSoap)._getProperty("javax.xml.rpc.service.endpoint.address");
+      }
+      
+    }
+    catch (javax.xml.rpc.ServiceException serviceException) {}
+  }
+  
+  public String getEndpoint() {
+    return _endpoint;
+  }
+  
+  public void setEndpoint(String endpoint) {
+    _endpoint = endpoint;
+    if (validaSoap != null)
+      ((javax.xml.rpc.Stub)validaSoap)._setProperty("javax.xml.rpc.service.endpoint.address", _endpoint);
+    
+  }
+  
+  public br.com.crownodonto.www.webservices.ValidaSoap getValidaSoap() {
+    if (validaSoap == null)
+      _initValidaSoapProxy();
+    return validaSoap;
+  }
+  
+  public java.lang.String valida_cpf(java.lang.String cpf) throws java.rmi.RemoteException{
+    if (validaSoap == null)
+      _initValidaSoapProxy();
+    return validaSoap.valida_cpf(cpf);
+  }
+  
+  public java.lang.String valida_cnpj(java.lang.String cgc) throws java.rmi.RemoteException{
+    if (validaSoap == null)
+      _initValidaSoapProxy();
+    return validaSoap.valida_cnpj(cgc);
+  }
+  
+  
+}

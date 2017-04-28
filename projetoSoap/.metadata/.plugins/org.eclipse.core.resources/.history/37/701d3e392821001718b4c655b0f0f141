@@ -1,0 +1,17 @@
+package br.com.autor.webservice;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import br.com.publicacao.dao.PublicacaoDaoImpl;
+import br.com.publicacao.vo.Publicacao;
+
+public class teste {
+	
+	public static void main(String[] args) throws ParseException {
+		
+	}
+	
+}

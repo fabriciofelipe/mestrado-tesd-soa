@@ -1,0 +1,81 @@
+package br.com.publicacao.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import br.com.publicacao.webservice.Publicacao;
+import br.com.publicacao.webservice.PublicacoesWebService;
+@SpringBootApplication
+@Controller
+public class PublicacaoController {
+
+
+	//@Autowired
+	//PublicacoesWebService service;
+
+	@RequestMapping(value = "/")
+	public String index(){
+		PublicacoesWebService service = new PublicacoesWebService();
+		Publicacao publicacao = service.getPublicacoesWebServicePort().buscarPublicacoes("Architecture");
+		System.out.println(publicacao);
+		return "index";
+	}
+
+	@RequestMapping("/publicacoes")
+	public String publicacoes(Model model, HttpServletRequest httpServletRequest){
+		PublicacoesWebService service = new PublicacoesWebService();
+		Publicacao publicacao = service.getPublicacoesWebServicePort().buscarPublicacoes(httpServletRequest.getParameter("titulo"));
+		List<Publicacao> publicacoes = new ArrayList<Publicacao>();
+		publicacoes.add(publicacao);
+		model.addAttribute("publicacao", publicacao);
+		return "publicacoes";
+	}
+
+	@RequestMapping("/cadastrarPublicacao")
+	public String cadastrarPublicacao(Model model, HttpServletRequest httpServletRequest){
+		PublicacoesWebService service = new PublicacoesWebService();
+		Publicacao publicacao = service.getPublicacoesWebServicePort().buscarPublicacoes(httpServletRequest.getParameter("titulo"));
+		List<Publicacao> publicacoes = new ArrayList<Publicacao>();
+		publicacoes.add(publicacao);
+		model.addAttribute("publicacao", publicacao);
+		return "cadastrarPublicacao";
+	}
+
+	@RequestMapping(value = "/addPublicacao", method = RequestMethod.POST)
+	public String addPublicacao(@ModelAttribute("SpringWeb") Publicacao publicacao, ModelMap model, HttpServletRequest request) {
+			PublicacoesWebService service = new PublicacoesWebService();
+			int ret = service.getPublicacoesWebServicePort().inserirPublicacao(publicacao);
+			request.setAttribute("incluir", ret);
+		return "alterarPublicacao";
+
+	}
+	
+	@RequestMapping(value = "/addPublicacao", method = RequestMethod.POST)
+	public String alterPublicacao(@ModelAttribute("SpringWeb") Publicacao publicacao, ModelMap model, HttpServletRequest request) {
+			PublicacoesWebService service = new PublicacoesWebService();
+			int ret = service.getPublicacoesWebServicePort().alterarPublicacao(publicacao);
+			publicacao.setId(null);
+			request.setAttribute("alterar", ret);
+		return "cadastrarPublicacao";
+
+	}
+	
+	@RequestMapping(value = "/exluirPublicacao", method = RequestMethod.POST)
+	public String exluirPublicacao(@ModelAttribute("SpringWeb") Publicacao publicacao, ModelMap model, HttpServletRequest request) {
+		PublicacoesWebService service = new PublicacoesWebService();
+		int ret = service.getPublicacoesWebServicePort().excluirPublicacao(publicacao.getId());
+		request.setAttribute("excluir", ret);
+		return "excluirPublicacao";
+	}
+
+}

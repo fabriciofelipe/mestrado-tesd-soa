@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?><xs:schema xmlns:tns="http://webservice.publicacao.com.br/" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" targetNamespace="http://webservice.publicacao.com.br/" version="1.0">
+<xs:element name="alterarAutor" type="tns:alterarAutor"/>
+<xs:element name="alterarAutorResponse" type="tns:alterarAutorResponse"/>
+<xs:element name="alterarPublicacao" type="tns:alterarPublicacao"/>
+<xs:element name="alterarPublicacaoResponse" type="tns:alterarPublicacaoResponse"/>
+<xs:element name="buscarAutor" type="tns:buscarAutor"/>
+<xs:element name="buscarAutorResponse" type="tns:buscarAutorResponse"/>
+<xs:element name="buscarPublicacoes" type="tns:buscarPublicacoes"/>
+<xs:element name="buscarPublicacoesResponse" type="tns:buscarPublicacoesResponse"/>
+<xs:element name="excluirAutor" type="tns:excluirAutor"/>
+<xs:element name="excluirAutorResponse" type="tns:excluirAutorResponse"/>
+<xs:element name="excluirPublicacao" type="tns:excluirPublicacao"/>
+<xs:element name="excluirPublicacaoResponse" type="tns:excluirPublicacaoResponse"/>
+<xs:element name="inserirAutor" type="tns:inserirAutor"/>
+<xs:element name="inserirAutorResponse" type="tns:inserirAutorResponse"/>
+<xs:element name="inserirPublicacao" type="tns:inserirPublicacao"/>
+<xs:element name="inserirPublicacaoResponse" type="tns:inserirPublicacaoResponse"/>
+<xs:element name="isCPF" type="tns:isCPF"/>
+<xs:element name="isCPFResponse" type="tns:isCPFResponse"/>
+<xs:complexType name="excluirPublicacao">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="excluirPublicacaoResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="excluirAutor">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:autor"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="autor">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cpf" type="xs:string"/>
+      <xs:element minOccurs="0" name="endereco" type="tns:endereco"/>
+      <xs:element minOccurs="0" name="id" type="xs:int"/>
+      <xs:element minOccurs="0" name="nome" type="xs:string"/>
+      <xs:element minOccurs="0" name="nomeCitacao" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="endereco">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="bairro" type="xs:string"/>
+      <xs:element minOccurs="0" name="cep" type="xs:int"/>
+      <xs:element minOccurs="0" name="cidade" type="xs:string"/>
+      <xs:element minOccurs="0" name="endereco" type="xs:string"/>
+      <xs:element minOccurs="0" name="id" type="xs:int"/>
+      <xs:element minOccurs="0" name="idAutor" type="xs:int"/>
+      <xs:element minOccurs="0" name="uf" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="excluirAutorResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="inserirAutor">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:autor"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="inserirAutorResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="buscarPublicacoes">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="buscarPublicacoesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:publicacao"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="publicacao">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="dataPublicacao" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="id" type="xs:int"/>
+      <xs:element minOccurs="0" name="pagFinal" type="xs:int"/>
+      <xs:element minOccurs="0" name="pagInicial" type="xs:int"/>
+      <xs:element minOccurs="0" name="titulo" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="buscarAutor">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="buscarAutorResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:autor"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="isCPF">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="isCPFResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="alterarAutor">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:autor"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="alterarAutorResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="inserirPublicacao">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:publicacao"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="inserirPublicacaoResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="alterarPublicacao">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:publicacao"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="alterarPublicacaoResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://webservice.autor.com.br" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://webservice.autor.com.br" xmlns:intf="http://webservice.autor.com.br" xmlns:tns1="http://vo.autor.com.br" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://webservice.autor.com.br" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://vo.autor.com.br"/>
+   <element name="excluirAutor">
+    <complexType>
+     <sequence>
+      <element name="autor" type="tns1:Autor"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="excluirAutorResponse">
+    <complexType>
+     <sequence>
+      <element name="excluirAutorReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="alterarAutor">
+    <complexType>
+     <sequence>
+      <element name="autor" type="tns1:Autor"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="alterarAutorResponse">
+    <complexType>
+     <sequence>
+      <element name="alterarAutorReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="buscarAutor">
+    <complexType>
+     <sequence>
+      <element name="nome" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="buscarAutorResponse">
+    <complexType>
+     <sequence>
+      <element name="buscarAutorReturn" type="tns1:Autor"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="inserirAutor">
+    <complexType>
+     <sequence>
+      <element name="autor" type="tns1:Autor"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="inserirAutorResponse">
+    <complexType>
+     <sequence>
+      <element name="inserirAutorReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://vo.autor.com.br" xmlns="http://www.w3.org/2001/XMLSchema">
+   <complexType name="Endereco">
+    <sequence>
+     <element name="bairro" nillable="true" type="xsd:string"/>
+     <element name="cep" nillable="true" type="xsd:int"/>
+     <element name="cidade" nillable="true" type="xsd:string"/>
+     <element name="id" nillable="true" type="xsd:int"/>
+     <element name="idAutor" nillable="true" type="xsd:int"/>
+     <element name="uf" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="Autor">
+    <sequence>
+     <element name="cpf" nillable="true" type="xsd:string"/>
+     <element name="endereco" nillable="true" type="tns1:Endereco"/>
+     <element name="id" nillable="true" type="xsd:int"/>
+     <element name="nome" nillable="true" type="xsd:string"/>
+     <element name="nomeCitacao" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="buscarAutorResponse">
+
+      <wsdl:part element="impl:buscarAutorResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="buscarAutorRequest">
+
+      <wsdl:part element="impl:buscarAutor" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="alterarAutorResponse">
+
+      <wsdl:part element="impl:alterarAutorResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="alterarAutorRequest">
+
+      <wsdl:part element="impl:alterarAutor" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="inserirAutorRequest">
+
+      <wsdl:part element="impl:inserirAutor" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="inserirAutorResponse">
+
+      <wsdl:part element="impl:inserirAutorResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="excluirAutorRequest">
+
+      <wsdl:part element="impl:excluirAutor" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="excluirAutorResponse">
+
+      <wsdl:part element="impl:excluirAutorResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="AutorWebService">
+
+      <wsdl:operation name="excluirAutor">
+
+         <wsdl:input message="impl:excluirAutorRequest" name="excluirAutorRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:excluirAutorResponse" name="excluirAutorResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="alterarAutor">
+
+         <wsdl:input message="impl:alterarAutorRequest" name="alterarAutorRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:alterarAutorResponse" name="alterarAutorResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="buscarAutor">
+
+         <wsdl:input message="impl:buscarAutorRequest" name="buscarAutorRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:buscarAutorResponse" name="buscarAutorResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="inserirAutor">
+
+         <wsdl:input message="impl:inserirAutorRequest" name="inserirAutorRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:inserirAutorResponse" name="inserirAutorResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="AutorWebServiceSoapBinding" type="impl:AutorWebService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="excluirAutor">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="excluirAutorRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="excluirAutorResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="alterarAutor">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="alterarAutorRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="alterarAutorResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="buscarAutor">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="buscarAutorRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="buscarAutorResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="inserirAutor">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="inserirAutorRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="inserirAutorResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="AutorWebServiceService">
+
+      <wsdl:port binding="impl:AutorWebServiceSoapBinding" name="AutorWebService">
+
+         <wsdlsoap:address location="http://localhost:8080/PublicacaoProducer/services/AutorWebService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

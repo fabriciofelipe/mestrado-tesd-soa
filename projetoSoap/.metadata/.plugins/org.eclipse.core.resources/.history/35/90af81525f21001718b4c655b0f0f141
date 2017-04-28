@@ -1,0 +1,62 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package br.com.autor.webservice;
+
+
+import javax.jws.WebMethod;
+import javax.jws.WebParam;
+import javax.jws.WebResult;
+import javax.jws.WebService;
+import javax.xml.ws.RequestWrapper;
+import javax.xml.ws.ResponseWrapper;
+
+import br.com.autor.dao.AutorDaoImpl;
+import br.com.autor.vo.Autor;
+
+/**
+ *
+ * @author labccet
+ */
+@WebService(targetNamespace = "http://webservice.autor.com.br/", portName = "AutorWebServicePort", serviceName = "AutorWebServiceService")
+public class AutorWebService {
+
+
+	@WebMethod(operationName = "buscarAutor", action = "urn:BuscarAutor")
+	@RequestWrapper(className = "br.com.autor.webservice.jaxws.BuscarAutor", localName = "buscarAutor", targetNamespace = "http://webservice.autor.com.br/")
+	@ResponseWrapper(className = "br.com.autor.webservice.jaxws.BuscarAutorResponse", localName = "buscarAutorResponse", targetNamespace = "http://webservice.autor.com.br/")
+	@WebResult(name = "return")
+	public Autor buscarAutor(@WebParam(name = "arg0") String nome) {
+		AutorDaoImpl dao = new AutorDaoImpl();
+		return dao.buscarAutor(nome);
+	}
+
+	@WebMethod(operationName = "inserirAutor", action = "urn:InserirAutor")
+	@RequestWrapper(className = "br.com.autor.webservice.jaxws.InserirAutor", localName = "inserirAutor", targetNamespace = "http://webservice.autor.com.br/")
+	@ResponseWrapper(className = "br.com.autor.webservice.jaxws.InserirAutorResponse", localName = "inserirAutorResponse", targetNamespace = "http://webservice.autor.com.br/")
+	@WebResult(name = "return")
+	public int inserirAutor(@WebParam(name = "arg0") Autor autor) {
+		AutorDaoImpl dao = new AutorDaoImpl();
+		return dao.incluirAutor(autor);
+	}
+	
+	@WebMethod(operationName = "alterarAutor", action = "urn:AlterarAutor")
+	@RequestWrapper(className = "br.com.autor.webservice.jaxws.AlterarAutor", localName = "alterarAutor", targetNamespace = "http://webservice.autor.com.br/")
+	@ResponseWrapper(className = "br.com.autor.webservice.jaxws.AlterarAutorResponse", localName = "alterarAutorResponse", targetNamespace = "http://webservice.autor.com.br/")
+	@WebResult(name = "return")
+	public int alterarAutor(@WebParam(name = "arg0") Autor autor) {
+		AutorDaoImpl dao = new AutorDaoImpl();
+		return dao.alterarAutor(autor);
+	}
+	
+	@WebMethod(operationName = "excluirAutor", action = "urn:ExcluirAutor")
+	@RequestWrapper(className = "br.com.autor.webservice.jaxws.ExcluirAutor", localName = "excluirAutor", targetNamespace = "http://webservice.autor.com.br/")
+	@ResponseWrapper(className = "br.com.autor.webservice.jaxws.ExcluirAutorResponse", localName = "excluirAutorResponse", targetNamespace = "http://webservice.autor.com.br/")
+	@WebResult(name = "return")
+	public int excluirAutor(@WebParam(name = "arg0") Autor autor) {
+		AutorDaoImpl dao = new AutorDaoImpl();
+		return dao.excluirAutor(autor);
+	}
+}

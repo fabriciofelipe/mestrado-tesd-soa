@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="PublicacoesWebServiceService" targetNamespace="http://webservice.publicacao.com.br/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://webservice.publicacao.com.br/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:portType name="PublicacoesWebService">
+  </wsdl:portType>
+  <wsdl:binding name="PublicacoesWebServiceServiceSoapBinding" type="tns:PublicacoesWebService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+  </wsdl:binding>
+  <wsdl:service name="PublicacoesWebServiceService">
+    <wsdl:port name="PublicacoesWebServicePort" binding="tns:PublicacoesWebServiceServiceSoapBinding">
+      <soap:address location="http://localhost:8080/PublicacaoProducer/services"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

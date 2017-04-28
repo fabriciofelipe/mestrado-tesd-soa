@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://webservice.publicacoes.com.br" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://webservice.publicacoes.com.br" xmlns:intf="http://webservice.publicacoes.com.br" xmlns:tns1="http://vo.publicacoes.com.br" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://webservice.publicacoes.com.br" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://vo.publicacoes.com.br"/>
+   <element name="buscarPublicacoes">
+    <complexType>
+     <sequence>
+      <element name="titulo" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="buscarPublicacoesResponse">
+    <complexType>
+     <sequence>
+      <element name="buscarPublicacoesReturn" type="tns1:Publicacao"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://vo.publicacoes.com.br" xmlns="http://www.w3.org/2001/XMLSchema">
+   <complexType name="Publicacao">
+    <sequence>
+     <element name="dataPublicacao" nillable="true" type="xsd:dateTime"/>
+     <element name="id" nillable="true" type="xsd:int"/>
+     <element name="pagFinal" nillable="true" type="xsd:int"/>
+     <element name="pagInicial" nillable="true" type="xsd:int"/>
+     <element name="titulo" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="buscarPublicacoesResponse">
+
+      <wsdl:part element="impl:buscarPublicacoesResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="buscarPublicacoesRequest">
+
+      <wsdl:part element="impl:buscarPublicacoes" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="PublicacoesWebService">
+
+      <wsdl:operation name="buscarPublicacoes">
+
+         <wsdl:input message="impl:buscarPublicacoesRequest" name="buscarPublicacoesRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:buscarPublicacoesResponse" name="buscarPublicacoesResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="PublicacoesWebServiceSoapBinding" type="impl:PublicacoesWebService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="buscarPublicacoes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="buscarPublicacoesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="buscarPublicacoesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="PublicacoesWebServiceService">
+
+      <wsdl:port binding="impl:PublicacoesWebServiceSoapBinding" name="PublicacoesWebService">
+
+         <wsdlsoap:address location="http://localhost:8080/teste/services/PublicacoesWebService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

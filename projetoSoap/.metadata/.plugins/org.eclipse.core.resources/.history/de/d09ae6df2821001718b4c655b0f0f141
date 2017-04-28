@@ -1,0 +1,19 @@
+package br.com.autor.webservice;
+
+import java.text.ParseException;
+
+import br.com.autor.dao.AutorDaoImpl;
+import br.com.autor.vo.Autor;
+
+public class teste {
+	
+	public static void main(String[] args) throws ParseException {
+		
+		AutorDaoImpl dao = new AutorDaoImpl();
+		Autor autor = new Autor();
+		autor.getCpf(08907925771);
+		dao.incluirAutor(autor);
+		
+	}
+	
+}

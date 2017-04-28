@@ -1,0 +1,54 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from AutorWebServiceService WSDL service -->
+
+  <service name="AutorWebService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://webservice.autor.com.br"/>
+      <parameter name="wsdlServiceElement" value="AutorWebServiceService"/>
+      <parameter name="schemaQualified" value="http://vo.autor.com.br,http://webservice.autor.com.br"/>
+      <parameter name="wsdlServicePort" value="AutorWebService"/>
+      <parameter name="className" value="br.com.autor.webservice.AutorWebServiceSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="AutorWebService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="excluirAutor" qname="operNS:excluirAutor" xmlns:operNS="http://webservice.autor.com.br" returnQName="retNS:excluirAutorReturn" xmlns:retNS="http://webservice.autor.com.br" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:autor" xmlns:pns="http://webservice.autor.com.br" type="tns:Autor" xmlns:tns="http://vo.autor.com.br"/>
+      </operation>
+      <operation name="alterarAutor" qname="operNS:alterarAutor" xmlns:operNS="http://webservice.autor.com.br" returnQName="retNS:alterarAutorReturn" xmlns:retNS="http://webservice.autor.com.br" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:autor" xmlns:pns="http://webservice.autor.com.br" type="tns:Autor" xmlns:tns="http://vo.autor.com.br"/>
+      </operation>
+      <operation name="buscarAutor" qname="operNS:buscarAutor" xmlns:operNS="http://webservice.autor.com.br" returnQName="retNS:buscarAutorReturn" xmlns:retNS="http://webservice.autor.com.br" returnType="rtns:Autor" xmlns:rtns="http://vo.autor.com.br" soapAction="" >
+        <parameter qname="pns:nome" xmlns:pns="http://webservice.autor.com.br" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="inserirAutor" qname="operNS:inserirAutor" xmlns:operNS="http://webservice.autor.com.br" returnQName="retNS:inserirAutorReturn" xmlns:retNS="http://webservice.autor.com.br" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:autor" xmlns:pns="http://webservice.autor.com.br" type="tns:Autor" xmlns:tns="http://vo.autor.com.br"/>
+      </operation>
+      <parameter name="allowedMethods" value="buscarAutor inserirAutor excluirAutor alterarAutor"/>
+
+      <typeMapping
+        xmlns:ns="http://vo.autor.com.br"
+        qname="ns:Autor"
+        type="java:br.com.autor.vo.Autor"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://vo.autor.com.br"
+        qname="ns:Endereco"
+        type="java:br.com.autor.vo.Endereco"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>
